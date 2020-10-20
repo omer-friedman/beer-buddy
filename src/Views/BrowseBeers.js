@@ -8,11 +8,11 @@ import BeersContainer from '../Components/BeersContainer'
 import SearchBar from '../Components/SearchBar'
 
 function BrowsBeers(props) {
-    let baseUrl = 'https://api.punkapi.com/v2/beers?'
     let perPage = '8'
+    let baseUrl = `https://api.punkapi.com/v2/beers?page=1&per_page=${perPage}`
     let content = null
     const [curPage, setCurPage] = useState(1)
-    const [url, setUrl] = useState(`${baseUrl}page=${curPage}&per_page=${perPage}`)
+    const [url, setUrl] = useState(baseUrl)
     let products = useAxiosGet(url)
 
     const handleSearch = (param, val) =>{
@@ -37,17 +37,20 @@ function BrowsBeers(props) {
         content = 
         <>  
             <SearchBar onSearch={handleSearch}/>
-            <div className="flex flex-row items-center justify-between">
+            <div className="flex flex-row items-center justify-center">
                 {
                     (curPage > 1) &&
                     <div className="text-5xl text-gray-600 cursor-pointer" onClick={() => handlePagination(curPage-1)}>
                         <FontAwesomeIcon icon={faAngleLeft} />
                     </div>
                 }
-                <BeersContainer favorites={props.favorites} products={products.data} toggleFavorite={props.toggleFavorite}/>
-                <div className="text-5xl text-gray-600 cursor-pointer" onClick={() => handlePagination(curPage+1)}>
-                    <FontAwesomeIcon icon={faAngleRight} />
-                </div>
+                <BeersContainer favorites={props.favorites} products={products.data} toggleFavorite={props.toggleFavorite} noResults={()=>setUrl(baseUrl)}/>
+                {
+                    (products.data.length == perPage) && 
+                    <div className="text-5xl text-gray-600 cursor-pointer" onClick={() => handlePagination(curPage+1)}>
+                        <FontAwesomeIcon icon={faAngleRight} />
+                    </div>
+                }
             </div>
         </>
     }
