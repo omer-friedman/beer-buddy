@@ -1,15 +1,12 @@
 import React from 'react';
-// import React, {useEffect, useState} from 'react';
-// import { useAxiosGet } from './Hooks/HttpHelper'
 import{
   BrowserRouter as Router,
   Switch,
   Route
 } from 'react-router-dom'
-import logo from './Media/logo1.png'
+import Header from './Components/Header'
 import Navigation from './Components/Navigation'
 import Favorites from './Views/Favorites'
-// import { buildUrl } from './Hooks/UrlHelper'
 import BrowseBeers from './Views/BrowseBeers'
 
 
@@ -19,15 +16,14 @@ function App() {
   const toggleFavorite = (product, isFavorite) =>{
     if(isFavorite)
       favorites[product.id] = product
-    else if(product.id in favorites)
+    else if(product.id in favorites){
       delete favorites[product.id]
+    }
   }
   
   return (
     <>
-      <header className="flex justify-center bg-black-t-50">
-        <img className="logoImg" src={logo} alt="logo"/>
-      </header>
+      <Header />
       <div className="h-screen p-10">
         <Router >
           <Navigation /> 
@@ -36,7 +32,7 @@ function App() {
               <BrowseBeers favorites={favorites} toggleFavorite={toggleFavorite}/>
             </Route>
             <Route path="/favorites">
-              <Favorites favorites={favorites} toggleFavorite={toggleFavorite}/>
+              <Favorites favorites={favorites} toggleFavorite={toggleFavorite} />
             </Route>
           </Switch>
         </Router>

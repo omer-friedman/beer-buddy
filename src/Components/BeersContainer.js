@@ -3,8 +3,6 @@ import BeerCard from './BeerCard'
 
 function BeersContainer(props) {
     const {products, favorites} = props
-    console.log(products);
-    console.log(favorites);
 
     return (
         <div className="flex flex-wrap justify-center">
