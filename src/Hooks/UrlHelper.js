@@ -1,7 +1,8 @@
 export function buildUrl(url, params){
     let isBase = url.endsWith('?')
     for(const[key,value] of Object.entries(params)){
-        // let re = new RegExp("(?<=[? | &]"+key+"=)[0-9]+") //check if key already exist in url
+        if(!key || !value)
+            continue;
         let re = new RegExp("(?<=[? | &]"+key+"=)([0-9]+|[^&|$]+)+") //check if key already exist in url
         let valuesFixed = value.toString().replace(' ', '_') 
         if(url.search(re) > -1){

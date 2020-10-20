@@ -14,6 +14,7 @@
 
 body{
   font-family: 'Dosis', sans-serif;
+  background-color: #FCFCFC;
 }
 
 .spinner {
@@ -76,6 +77,12 @@ body{
 }
 
 .box{
+  width: 16rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   cursor: context-menu;
   padding: 0.2em 1em;
   line-height: 1.5em;
@@ -83,7 +90,17 @@ body{
   margin: 1rem 5rem 5rem 5rem;
 }
 
+.box:hover{
+  box-shadow: 0 10px 25px rgba(21,21,21,.1);
+  transform: translate3d(0,-2px,0);
+}
+
 .lg-box{
+  width: 16rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
   cursor: context-menu;
   padding: 0.2em 1em;
   line-height: 1.5em;
@@ -270,4 +287,5 @@ input[type=text]{
 
 .searchBar{
   width: fit-content;
+  background: white;
 }

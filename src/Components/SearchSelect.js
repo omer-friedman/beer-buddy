@@ -11,10 +11,8 @@ function SearchSelect(props) {
     }
 
     const handleChange = (e) =>{
-        console.log(e.target.value)
         props.handleChange(e.target.value)
     }
-    
 
     return (
         <>
