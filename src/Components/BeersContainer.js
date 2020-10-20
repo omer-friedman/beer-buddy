@@ -15,7 +15,7 @@ function BeersContainer(props) {
                         </div>
                     )
                     :
-                    <NoResults noResults={props.noResults}/>
+                    <NoResults noResults={props.noResults} message={"no results"}/>
                 }
         </div>
     );

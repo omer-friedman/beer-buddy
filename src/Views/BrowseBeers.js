@@ -6,6 +6,7 @@ import {faAngleLeft, faAngleRight} from '@fortawesome/free-solid-svg-icons'
 import Loader from '../Components/Loader';
 import BeersContainer from '../Components/BeersContainer'
 import SearchBar from '../Components/SearchBar'
+import NoResults from '../Components/NoResults';
 
 function BrowsBeers(props) {
     let perPage = '8'
@@ -26,7 +27,7 @@ function BrowsBeers(props) {
     }
 
     if(products.error){
-        content= <div>error</div>
+        content= <NoResults noResults={()=>setUrl(baseUrl)} message={"Woops, something went wrong"}/>
     }
 
     if(products.loading){
