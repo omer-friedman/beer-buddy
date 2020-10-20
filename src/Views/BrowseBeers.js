@@ -46,7 +46,7 @@ function BrowsBeers(props) {
                 }
                 <BeersContainer favorites={props.favorites} products={products.data} toggleFavorite={props.toggleFavorite} noResults={()=>setUrl(baseUrl)}/>
                 {
-                    (products.data.length == perPage) && 
+                    (products.data.length === perPage) && 
                     <div className="text-5xl text-gray-600 cursor-pointer" onClick={() => handlePagination(curPage+1)}>
                         <FontAwesomeIcon icon={faAngleRight} />
                     </div>

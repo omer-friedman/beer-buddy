@@ -1,6 +1,5 @@
 import React from 'react'
 import not_found from '../Media/not_found.png'
-import { Link } from "react-router-dom"
 
 function NoResults(props) {
     return (
