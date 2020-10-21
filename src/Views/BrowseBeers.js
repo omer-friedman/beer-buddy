@@ -19,34 +19,12 @@ function BrowsBeers(props) {
     const [itemsSelected, setItemsSelected] = useState({})
     let products = useAxiosGet(url)
 
-    console.log("BrowseBeers")
-    console.log(itemsSelected)
-    console.log("********")
-    
-    // useEffect(()=>{
-    //     setUrl(buildUrl(url, itemsSelected))
-    //     console.log("useEffect")
-    // }, [itemsSelected])
-    
-
-    // const handleSearch = (param, val) =>{
-
-    //     setCurPage(1)
-    //     const paramsObj = {
-    //         [param]: [val, isAdd],
-    //         page: curPage,
-    //     }
-    //     // console.log("BrowseBeers: handleSearch")
-    //     // setUrl(buildUrl(url, paramsObj))
-    // }
-
     const handlePagination = (newPage) =>{
         setCurPage(newPage)
         setUrl(buildUrl(baseUrl, {page: newPage}))
     }
 
     useEffect(()=>{
-        console.log("isSeaerch: "+isSearch)
         let nowPage = curPage;
         if(isSearch){
             setCurPage(1)
@@ -54,9 +32,7 @@ function BrowsBeers(props) {
             setIsSearch(false)
         }
         setUrl(buildUrl(baseUrl, {...itemsSelected, page: nowPage}))
-        console.log("BrowseBeers: useEffect")
     }, [itemsSelected])
-
 
 
     if(products.error){
@@ -78,7 +54,7 @@ function BrowsBeers(props) {
                         <FontAwesomeIcon icon={faAngleLeft} />
                     </div>
                 }
-                <BeersContainer favorites={props.favorites} products={products.data} toggleFavorite={props.toggleFavorite} noResults={()=>setUrl(baseUrl)}/>
+                <BeersContainer favorites={props.favorites} products={products.data} toggleFavorite={props.toggleFavorite} noResults={()=>{setUrl(baseUrl); setItemsSelected({})}}/>
                 {
                     (products.data.length == perPage) && 
                     <div className="text-5xl text-gray-600 cursor-pointer" onClick={() => handlePagination(curPage+1)}>

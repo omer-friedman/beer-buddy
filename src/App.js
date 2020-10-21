@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import{
   BrowserRouter as Router,
   Switch,
@@ -11,13 +11,15 @@ import BrowseBeers from './Views/BrowseBeers'
 
 
 function App() {
-  let favorites = {}
+  const [favorites, setFavorites] = useState({})
+  const [goToBaseUrl, setGoToBaseUrl] = useState(false)
 
-  const toggleFavorite = (product, isFavorite) =>{
-    if(isFavorite)
-      favorites[product.id] = product
+  const toggleFavorite = (product) =>{
+    if(product.isFavorite)
+      setFavorites({...favorites,[product.id]: product})
     else if(product.id in favorites){
       delete favorites[product.id]
+      setFavorites(Object.assign({}, favorites))
     }
   }
   
@@ -29,10 +31,10 @@ function App() {
           <Navigation /> 
           <Switch>
             <Route exact path="/">
-              <BrowseBeers favorites={favorites} toggleFavorite={toggleFavorite}/>
+              <BrowseBeers favorites={favorites} toggleFavorite={toggleFavorite} gotToBaseUrl={goToBaseUrl}/>
             </Route>
             <Route path="/favorites">
-              <Favorites favorites={favorites} toggleFavorite={toggleFavorite} />
+              <Favorites favorites={favorites} toggleFavorite={toggleFavorite} goToBaseUrl={() => setGoToBaseUrl(true)}/>
             </Route>
           </Switch>
         </Router>

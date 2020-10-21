@@ -11,7 +11,12 @@ function BeersContainer(props) {
                     products.length > 0?
                     products.map(product =>
                         <div key={product.id}>
-                            <BeerCard product={product} isFavorite={product.id in favorites} toggleFavorite={props.toggleFavorite}/>
+                            <BeerCard product={
+                                (product.id in favorites)? 
+                                favorites[product.id] : 
+                                product
+                            }
+                            isFavorite={product.id in favorites} toggleFavorite={props.toggleFavorite}/>
                         </div>
                     )
                     :

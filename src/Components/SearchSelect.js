@@ -16,7 +16,7 @@ function SearchSelect(props) {
 
     return (
         <>
-            <select className="uppercase mr-5" onChange={handleChange}>
+            <select value={searchItems} className="uppercase mr-5" onChange={handleChange}>
                 {
                    Object.entries(searchItems).map(([key,val]) => {
                         return <option value={val} key={key}>{key}</option>
