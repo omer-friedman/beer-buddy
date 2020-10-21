@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, onKeyPress } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import SearchSelect from './SearchSelect'
@@ -30,10 +30,15 @@ function SearchBar(props) {
         setKey(value)
     }
 
+    const handleKeyPress = (e) =>{
+        if(e.key === 'Enter')
+            searchClickHandler.call()
+    }
+
     return (
         <div className="flex flex-row items-center ml-48 mb-3 text-gray-600 shadow h-12 p-3 searchBar">
                 {showSearch&& <SearchSelect handleChange={searchSelectedHandler}/>}
-                <input ref={inpRef} type="text" className={`fdInput ${!showSearch? 'hidden':''}`} />
+                <input ref={inpRef} type="text" className={`fdInput ${!showSearch? 'hidden':''}`} onKeyPress={(e) => handleKeyPress(e)} />
                 <FontAwesomeIcon icon={faSearch} className={`cursor-pointer mr-4 ${!showSearch? 'opacity-25 cursor-context-menu': ''}`} onClick={searchClickHandler}/>
                 {
                     showSearch?

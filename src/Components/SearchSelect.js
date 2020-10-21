@@ -7,7 +7,7 @@ function SearchSelect(props) {
         'beer name': 'beer_name',
         'minimum abv' : 'abv_gt',
         'minimum ibu' : 'ibu_gt',
-        'minimum ebc' : 'ebc_gt}'
+        'minimum ebc' : 'ebc_gt'
     }
 
     const handleChange = (e) =>{
@@ -16,7 +16,7 @@ function SearchSelect(props) {
 
     return (
         <>
-            <select value={searchItems} className="uppercase mr-5" onChange={handleChange}>
+            <select className="uppercase mr-5" onChange={handleChange}>
                 {
                    Object.entries(searchItems).map(([key,val]) => {
                         return <option value={val} key={key}>{key}</option>

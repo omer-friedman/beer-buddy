@@ -9,7 +9,7 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Dosis:wght@500&display=swap');
 
 body{
@@ -159,13 +159,13 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
+  font-size: 27px;
   padding: 10px;
   cursor: pointer;
   color: gray;
 }
 
-.likeIcon:hover{
+.likeIcon:hover , .rank:hover ~ .likeIcon{
   background: rgba(0,0,0,0.1);
   border-radius: 50%;
 }
@@ -284,6 +284,7 @@ input[type=text]{
 }
 
 .searchBar{
+  width: -moz-fit-content;
   width: fit-content;
   background: white;
 }
@@ -319,4 +320,26 @@ input[type=text]{
   justify-content: center;
   align-items:center;
   border-radius: 5px;
+}
+
+.rank{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+
+.rank select{
+  font-family: 'Rubik', sans-serif;
+  background: transparent;
+  color: white;
+  margin-right: -33px;
+  margin-top: 9px;
+  outline: none;
+  z-index: 50;
+  padding: 3px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
 }
