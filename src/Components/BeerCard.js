@@ -9,6 +9,7 @@ import {useTransition, animated} from 'react-spring'
 import ExpandButton from './ExpandButton';
 import LikeButton from './LikeButton'
 import BeerRank from './BeerRank'
+import { CardBox, BeerHeader, Description, RowContainer, ExpadDescription, Mask, LargeCard } from './Styled/BeerCardSC'
 
 const BeerCard = (props) =>{
     const {product} = props
@@ -23,13 +24,14 @@ const BeerCard = (props) =>{
     let expIcon = isDescExp? faAngleUp : faAngleDown;
     let shouldExpend = product.description.length > 200 && isLarge
     let routePath = useLocation().pathname;
+    
     const maskTransitions = useTransition(isExpand, null, {
         from: { opacity: 0 },
         enter: { opacity: 1 },
         leave: { opacity: 0 },
     })
 
-    const cardTransitions = useTransition(isExpand, null, {
+    const largeCardTransition = useTransition(isExpand, null, {
         from: { opacity: 0, transform: 'translateX(100%) translateY(30%)' },
         enter: { opacity: 1, transform: 'translateX(40%) translateY(30%)' },
         leave: { opacity: 0, transform: 'translateX(100%) translateY(30%)' },
@@ -44,60 +46,47 @@ const BeerCard = (props) =>{
 
     return (
         <>
-            <div className={`${isLarge? `lg-box` : `box`}`}>
-                <span className="uppercase whitespace-no-wrap overflow-hidden w-full text-center border-b-2">{product.name}</span>
-                <div className="flex flex-row items-center">
+            <CardBox islarge={isLarge}>
+                <BeerHeader>{product.name}</BeerHeader>
+                <RowContainer>
                     <BottleImg url={product.image_url}/>
-                    <div className={`itemDescription ${isDescExp? 'expandedDecription' : ''}`}>{product.description}</div>
-                </div>
-                <div className="flex flex-row w-full justify-evenly">
+                    <Description isdescexp={isDescExp}>{product.description}</Description>
+                </RowContainer>
+                <RowContainer justify_conent="space-evenly">
                     <BeerProp icon={"%"} val={product.abv} description={abv_desc}/>
                     <BeerProp icon={"IBU"} val={product.ibu} description={ibu_desc}/>
                     <BeerProp icon={"EBC"} val={product.ebc} description={ebc_desc}/>
-                </div>
-                {
-                    !isLarge && 
-                    <div className="flex flex-row w-full">
+                </RowContainer>
+                {!isLarge && 
+                    <RowContainer>
                         <LikeButton isFavorite={isFavorite} toggleFavorite={() => props.toggleFavorite({...product, isFavorite: !isFavorite})} />
                         <ExpandButton expandBtnClicked={() => setExpand(!isExpand)} />
                         {
                             routePath == '/favorites' &&
                             <BeerRank rank={rank} handleRankChanged={setRank}/>
                         }   
-                    </div>
+                    </RowContainer>
                 }
                 {
                     shouldExpend && 
-                    <div className="flex justify-center text-gray-600 cursor-pointer" onClick={() => setDescExp(!isDescExp)}>
+                    <ExpadDescription onClick={() => setDescExp(!isDescExp)}>
                         <FontAwesomeIcon icon={expIcon} />
-                    </div>
+                    </ExpadDescription>
                 }
-            </div>
+            </CardBox>
             {
                 maskTransitions.map(({ item, key, props }) =>
-                        item && 
-                        <animated.div 
-                            key={key} 
-                            style={props}
-                            className="bg-black-t-50 fixed top-0 left-0 w-screen h-screen z-50"
-                            onClick={() => setExpand(false)}
-                        >
-                        </animated.div>
-                    )
+                    item && 
+                    <Mask as={animated.div} key={key} style={props}onClick={() => setExpand(false)} />
+                )
             }
             {
-                cardTransitions.map(({ item, key, props }) =>
-                item && 
-                <animated.div 
-                    key={key} 
-                    style={props}
-                    className="fixed top-0 left-30p z-50"
-                >
-                    <BeerCard isLarge={true}
-                        product = {product}
-                    />
-                </animated.div>
-            )
+                largeCardTransition.map(({ item, key, props }) =>
+                    item && 
+                    <LargeCard as={animated.div} key={key} style={props}>
+                        <BeerCard isLarge={true} product = {product} />
+                    </LargeCard>
+                )
             }
         </>
     )

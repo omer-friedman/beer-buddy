@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import {ThemeProvider} from 'styled-components'
+import Theme from './Components/Styled/Theme'
 import{
   BrowserRouter as Router,
   Switch,
@@ -8,6 +10,7 @@ import Header from './Components/Header'
 import Navigation from './Components/Navigation'
 import Favorites from './Views/Favorites'
 import BrowseBeers from './Views/BrowseBeers'
+import Body from './Components/Styled/Body'
 
 
 function App() {
@@ -25,8 +28,9 @@ function App() {
   
   return (
     <>
+    <ThemeProvider theme={Theme}>
       <Header />
-      <div className="h-screen p-10">
+      <Body>
         <Router >
           <Navigation /> 
           <Switch>
@@ -38,7 +42,8 @@ function App() {
             </Route>
           </Switch>
         </Router>
-      </div>
+      </Body>
+    </ThemeProvider>
     </>
   );
 }

@@ -1,28 +1,20 @@
 import React from 'react';
-import BeerCard from './BeerCard'
+import BeersItems from './BeersItems'
 import NoResults from './NoResults'
+import BeersContainerSC from './Styled/BeersContainerSC'
 
 function BeersContainer(props) {
     const {products, favorites} = props
 
     return (
-        <div className="flex flex-wrap justify-center">
+        <BeersContainerSC>
                 {
                     products.length > 0?
-                    products.map(product =>
-                        <div key={product.id}>
-                            <BeerCard product={
-                                (product.id in favorites)? 
-                                favorites[product.id] : 
-                                product
-                            }
-                            isFavorite={product.id in favorites} toggleFavorite={props.toggleFavorite}/>
-                        </div>
-                    )
+                    <BeersItems products={products} favorites={favorites} toggleFavorite={props.toggleFavorite}/>
                     :
                     <NoResults noResults={props.noResults} message={"no results"}/>
                 }
-        </div>
+        </BeersContainerSC>
     );
 }
 

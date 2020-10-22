@@ -1,6 +1,6 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { PropBar, RemoveProp } from './Styled/SearchPropSC'
 
 function SearchProp(props) {
     const [searchKey, searchVal] = [props.searchKey, props.searchVal]
@@ -12,40 +12,31 @@ function SearchProp(props) {
         'beer name': 'beer_name',
         'minimum abv' : 'abv_gt',
         'minimum ibu' : 'ibu_gt',
-        'minimum ebc' : 'ebc_gt}'
+        'minimum ebc' : 'ebc_gt'
     }
+
     const visualPropKey = (srchKey) =>{
-        let visualKey = ''
-        switch(searchKey){
-            case 'food':
-                visualKey = 'food pairing:';
-                break;
-            case 'beer_name':
-                visualKey = 'beer name:';
-                break;
-            case 'abv_gt':
-                visualKey = '% >';
-                break;
-            case 'ibu_gt':
-                visualKey = 'IBU >';
-                break;
-            case 'ebc_gt':
-                visualKey = 'EBC >';
-                break;
+        let visualKey = '';
+        switch(srchKey){
+            case 'food':      visualKey = 'food pairing - '; break;
+            case 'beer_name': visualKey = 'beer name - ';    break;
+            case 'abv_gt':    visualKey = '% >';             break;
+            case 'ibu_gt':    visualKey = 'IBU >';           break;
+            case 'ebc_gt':    visualKey = 'EBC >';           break;
         }
         return visualKey;
     }
 
-    console.log("SearchProp: "+searchKey)
     return (
-        <div className="search_prop">
+        <PropBar>
             <span>{visualPropKey(searchKey)} {searchVal}</span>
-            <FontAwesomeIcon icon={faTimes} className="ml-4 cursor-pointer" onClick={()=>{
+            <RemoveProp icon={faTimes} onClick={()=>{
                 removeItem.call()
                 delete itemsSelected[searchKey]
                 setItemsSelected(Object.assign({}, itemsSelected))
-                }}/>
-        </div>
+                }}
+            />
+        </PropBar>
     );
 }
 

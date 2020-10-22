@@ -7,6 +7,7 @@ import Loader from '../Components/Loader';
 import BeersContainer from '../Components/BeersContainer'
 import SearchBar from '../Components/SearchBar'
 import NoResults from '../Components/NoResults';
+import { BrowseContainer, PaginationArrow } from '../Components/Styled/BrowsBeersSC'
 
 function BrowsBeers(props) {
     let perPage = '8'
@@ -47,21 +48,21 @@ function BrowsBeers(props) {
         content = 
         <>  
             <SearchBar onSearch={() => setIsSearch(true)} showSearch={showSearch} setShowSearch={setShowSearch} itemsSelected={itemsSelected} setItemsSelected={setItemsSelected}/>
-            <div className="flex flex-row items-center justify-center">
+            <BrowseContainer>
                 {
                     (curPage > 1) &&
-                    <div className="text-5xl text-gray-600 cursor-pointer" onClick={() => handlePagination(curPage-1)}>
+                    <PaginationArrow onClick={() => handlePagination(curPage-1)}>
                         <FontAwesomeIcon icon={faAngleLeft} />
-                    </div>
+                    </PaginationArrow>
                 }
                 <BeersContainer favorites={props.favorites} products={products.data} toggleFavorite={props.toggleFavorite} noResults={()=>{setUrl(baseUrl); setItemsSelected({})}}/>
                 {
                     (products.data.length == perPage) && 
-                    <div className="text-5xl text-gray-600 cursor-pointer" onClick={() => handlePagination(curPage+1)}>
+                    <PaginationArrow onClick={() => handlePagination(curPage+1)}>
                         <FontAwesomeIcon icon={faAngleRight} />
-                    </div>
+                    </PaginationArrow>
                 }
-            </div>
+            </BrowseContainer>
         </>
     }
 

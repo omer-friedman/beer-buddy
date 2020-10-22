@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import {useTransition, animated} from 'react-spring'
 import NavMenu from './NavMenu'
+import { Mask } from './Styled/BeerCardSC'
+import { BarsIcon, Menu } from './Styled/NavigationSC'
   
 
 function Navigation(){
@@ -22,38 +23,20 @@ function Navigation(){
 
     return (
         <nav>
-            <span className="text-xl float-right">
-                <FontAwesomeIcon 
-                    icon={faBars}
-                    onClick={() => setShowMenu(!showMenu)}
-                />
-            </span>
-
+            <BarsIcon icon={faBars} onClick={() => setShowMenu(!showMenu)}/>
             { //Mask
                 maskTransitions.map(({ item, key, props }) =>
                     item && 
-                    <animated.div 
-                        key={key} 
-                        style={props}
-                        className="bg-black-t-50 fixed top-0 left-0 w-full h-full z-50"
-                        onClick={() => setShowMenu(false)}
-                    >
-                    </animated.div>
+                    <Mask as={animated.div} key={key} style={props}onClick={() => setShowMenu(false)} />
                 )
             }
 
             { //Menu
                 menuTransitions.map(({ item, key, props }) =>
                     item && 
-                    <animated.div 
-                        key={key} 
-                        style={props}
-                        className="fixed bg-white top-0 left-0 w-1/5 h-full z-50 shadow p-3"
-                    >
-                        <NavMenu 
-                            closeMenu={() => setShowMenu(false)}
-                        />
-                    </animated.div>
+                    <Menu as={animated.div} key={key} style={props} >
+                        <NavMenu closeMenu={() => setShowMenu(false)}/>
+                    </Menu>
                 )
             }
         </nav>

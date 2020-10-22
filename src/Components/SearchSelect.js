@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchSelectSC from './Styled/SearchSelectSC'
 
 function SearchSelect(props) {
     
@@ -16,13 +17,13 @@ function SearchSelect(props) {
 
     return (
         <>
-            <select className="uppercase mr-5" onChange={handleChange}>
+            <SearchSelectSC onChange={handleChange}>
                 {
                    Object.entries(searchItems).map(([key,val]) => {
                         return <option value={val} key={key}>{key}</option>
                     })
                 }
-            </select>
+            </SearchSelectSC>
         </>
     )
 }
