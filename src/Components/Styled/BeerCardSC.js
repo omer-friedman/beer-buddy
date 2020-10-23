@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 
 export const CardBox = styled.div`
-    width: 16rem;
+    width: 14rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,7 +27,8 @@ export const BeerHeader = styled.div`
     overflow: hidden;
     width: 100%;
     text-align: center;
-    border-bottom-width: 2px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid ${props => props.theme.gray_600};
 `
 
 export const Description = styled.div`
@@ -45,10 +46,7 @@ export const Description = styled.div`
 export const RowContainer = styled.div`
     display: flex;
     width: 100%;
-    /* justify-content: ${props => props.justify_conent? 'cenetr' : 'center'}; */
 `
-
-// <div className="flex justify-center text-gray-600 cursor-pointer" onClick={() => setDescExp(!isDescExp)}>
 
 export const ExpadDescription = styled.div`
     display: flex;

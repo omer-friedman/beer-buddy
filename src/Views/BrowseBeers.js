@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAxiosGet } from '../Hooks/HttpHelper'
 import { buildUrl } from '../Hooks/UrlHelper'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAngleLeft, faAngleRight} from '@fortawesome/free-solid-svg-icons'
 import Loader from '../Components/Loader';
 import BeersContainer from '../Components/BeersContainer'
@@ -11,8 +10,8 @@ import { BrowseContainer, PaginationArrow } from '../Components/Styled/BrowsBeer
 
 function BrowsBeers(props) {
     let perPage = '8'
-    let baseUrl = `https://api.punkapi.com/v2/beers?page=1&per_page=${perPage}`
     let content = null
+    const baseUrl = `https://api.punkapi.com/v2/beers?page=1&per_page=${perPage}`
     const [url, setUrl] = useState(baseUrl)
     const [curPage, setCurPage] = useState(1)
     const [showSearch, setShowSearch] = useState(false)
@@ -49,19 +48,9 @@ function BrowsBeers(props) {
         <>  
             <SearchBar onSearch={() => setIsSearch(true)} showSearch={showSearch} setShowSearch={setShowSearch} itemsSelected={itemsSelected} setItemsSelected={setItemsSelected}/>
             <BrowseContainer>
-                {
-                    (curPage > 1) &&
-                    <PaginationArrow onClick={() => handlePagination(curPage-1)}>
-                        <FontAwesomeIcon icon={faAngleLeft} />
-                    </PaginationArrow>
-                }
+                <PaginationArrow icon={faAngleLeft} isvisible={curPage > 1? 1 : 0} onClick={() => handlePagination(curPage-1)} />
                 <BeersContainer favorites={props.favorites} products={products.data} toggleFavorite={props.toggleFavorite} noResults={()=>{setUrl(baseUrl); setItemsSelected({})}}/>
-                {
-                    (products.data.length == perPage) && 
-                    <PaginationArrow onClick={() => handlePagination(curPage+1)}>
-                        <FontAwesomeIcon icon={faAngleRight} />
-                    </PaginationArrow>
-                }
+                <PaginationArrow icon={faAngleRight} isvisible={products.data.length == perPage? 1 : 0} onClick={() => handlePagination(curPage+1)} />
             </BrowseContainer>
         </>
     }

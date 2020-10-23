@@ -11,7 +11,7 @@ export const PropBar = styled.div`
     text-transform: uppercase;
     justify-content: center;
     align-items:center;
-    border-radius: 5px;
+    border-radius: 1px;
 `
 export const RemoveProp = styled(FontAwesomeIcon)`
     margin-left: 1rem;

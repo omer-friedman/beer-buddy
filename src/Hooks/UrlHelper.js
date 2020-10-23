@@ -1,8 +1,6 @@
 export function buildUrl(url, params){
     let isBase = url.endsWith('?')
     for(const[key,value] of Object.entries(params)){
-        console.log("UrlHelper- key: "+key)
-        console.log("UrlHelper- val: "+value)
         if(!key || !value)
             continue
         let re = new RegExp("(?<=[? | &]"+key+"=)([0-9]+|[^&|$]+)+") //check if key already exist in url
@@ -14,7 +12,6 @@ export function buildUrl(url, params){
             isBase = false
         }
     }
-    console.log(url)
     return url
 }
 
