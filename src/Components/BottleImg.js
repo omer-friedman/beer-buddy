@@ -6,7 +6,6 @@ import BottleImgSC from './Styled/BottleImgSC'
 function BottleImg(props) {
     const {url} = props
     const displayOriginalBottle = url != null && !url.endsWith('keg.png');
-
     return <BottleImgSC src={displayOriginalBottle? url : beer} />;
 }
 

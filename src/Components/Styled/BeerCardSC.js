@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 
 export const CardBox = styled.div`
     width: 14rem;
+    height: 23rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,7 +24,9 @@ export const CardBox = styled.div`
 export const BeerHeader = styled.div`
     text-transform: uppercase;
     font-size: 1.33rem;
-    white-space: nowrap;
+    height: 3rem;
+    display: inline-grid;
+    align-items: center;
     overflow: hidden;
     width: 100%;
     text-align: center;

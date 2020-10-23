@@ -20,8 +20,9 @@ function SearchBar(props) {
     }, [showSearch])
 
     const searchClickHandler = () =>{
-        if(showSearch){
-            setItemsSelected({...itemsSelected, [selectedKey]: inpRef.current.value})
+        let val_to_search = inpRef.current.value;
+        if(showSearch && val_to_search){
+            setItemsSelected({...itemsSelected, [selectedKey]: val_to_search})
             props.onSearch.call()
         }
     }
@@ -38,7 +39,7 @@ function SearchBar(props) {
 
     return ( 
         <SearchBarSC>  
-            {showSearch&& <SearchSelect handleChange={searchSelectedHandler}/>}
+            {showSearch && <SearchSelect handleChange={searchSelectedHandler}/>}
             <SearchInput ref={inpRef} showsearch={showSearch} onKeyPress={(e) => handleKeyPress(e)} />
             <StyledIconSearch icon={faSearch} onClick={searchClickHandler}/>
             <FontAwesomeIcon icon={showSearch? faAngleLeft: faAngleRight} onClick={() => setShowSearch(!showSearch)}/>
