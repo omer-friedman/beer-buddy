@@ -1,6 +1,6 @@
 import * as actions from './actionTypes'
 
-export const searchExpandToggled = (isExpended) =>{
+export const searchExpandToggled = (isExpended) => {
     return {
         type: actions.SEARCH_EXPAND_TOGGLED,
         payload: {
@@ -9,28 +9,28 @@ export const searchExpandToggled = (isExpended) =>{
     }
 }
 
-export const searchAdded = (searchKey, searchVal) =>{
-    return{
+export const searchAdded = (searchKey, searchVal) => {
+    return {
         type: actions.SEARCH_FILTER_ADDED,
-        payload:{
+        payload: {
             filterKey: searchKey,
             filterVal: searchVal
         }
     }
 }
 
-export const searchRemoved = (filterKey) =>{
-    return{
+export const searchRemoved = (filterKey) => {
+    return {
         type: actions.SEARCH_FILTER_REMOVED,
-        payload:{
+        payload: {
             filterKey
         }
     }
 }
 
-export const removeAllProps = () =>{
-    return{
+export const removeAllProps = () => {
+    return {
         type: actions.SEARCH_ALL_FILTERS_REMOVED,
-        payload:{}
+        payload: {}
     }
 }

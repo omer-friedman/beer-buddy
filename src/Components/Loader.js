@@ -4,7 +4,7 @@ import Spinner from './styled/Spinner';
 import { Mask } from './styled/BeerCardSC';
 
 
-const Loader = () =>{
+const Loader = () => {
     return (
         <Mask>
             <LoaderSC>

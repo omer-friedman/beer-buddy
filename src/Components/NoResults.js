@@ -7,18 +7,18 @@ import { removeAllProps } from '../actions/searchActions';
 const NoResults = (props) => {
     const dispatch = useDispatch();
 
-    const removeProps = () =>{
+    const removeProps = () => {
         dispatch(removeAllProps());
     }
 
     return (
         <Container>
-            <SpilledImg alt="not-found" src={spilled_bear}/>
+            <SpilledImg alt="not-found" src={spilled_bear} />
             <HomeLink to="/" onClick={removeProps}>
                 <NoResultsBox>
-                        <ErrorMsg>{props.message}</ErrorMsg>
-                        <Span>Click To Browse</Span>
-                        <Span>Some Beers</Span>
+                    <ErrorMsg>{props.message}</ErrorMsg>
+                    <Span>Click To Browse</Span>
+                    <Span>Some Beers</Span>
                 </NoResultsBox>
             </HomeLink>
         </Container>

@@ -6,15 +6,15 @@ import Icon from './styled/Icon';
 
 const LikeButton = (props) => {
     const favorites = useSelector(state => state.favoritesReducer.favorites)
-    const isFavorite = (favorites? (props.id in favorites? 1 : 0) : 0)
+    const isFavorite = (favorites ? (props.id in favorites ? 1 : 0) : 0)
     const dispatch = useDispatch();
 
-    const toggleFavlorite = () =>{
+    const toggleFavlorite = () => {
         dispatch(isFavorite ? favoriteRemoved(props.id) : favoriteAdded(props.id))
     }
 
     return (
-        <Icon icon={faHeart} isfavorite={isFavorite} onClick={() => toggleFavlorite()}/>
+        <Icon icon={faHeart} isfavorite={isFavorite} onClick={() => toggleFavlorite()} />
     );
 };
 

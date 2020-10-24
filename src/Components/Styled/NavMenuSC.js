@@ -13,7 +13,7 @@ export const MenuHeader = styled.div`
 
 export const LinkSC = styled(Link)`
     display: block;
-    color: ${props=> props.theme.blue_500};
+    color: ${props => props.theme.blue_500};
     font-size: 1.5rem;
     text-decoration: none;
 `

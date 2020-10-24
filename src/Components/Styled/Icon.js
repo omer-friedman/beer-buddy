@@ -11,7 +11,7 @@ const Icon = styled(FontAwesomeIcon)`
     padding: 10px;
     z-index:1;
     cursor: pointer;
-    color: ${props => props.isfavorite? props.theme.favorite_color : (props.isranked? props.theme.yellow_400 : props.theme.gray_600)};
+    color: ${props => props.isfavorite ? props.theme.favorite_color : (props.isranked ? props.theme.yellow_400 : props.theme.gray_600)};
 
     &:hover{
         background: rgba(0,0,0,0.1);

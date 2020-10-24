@@ -13,11 +13,11 @@ export const CardBox = styled.div`
     line-height: 1.5em;
     background: white;
     margin: 1rem 5rem 5rem 5rem;
-    ${props => props.islarge? css`transform: scale(1.5)` : ''};
+    ${props => props.islarge ? css`transform: scale(1.5)` : ''};
 
     &:hover{
         box-shadow: 0 10px 25px rgba(21,21,21,.1);
-        ${props => !props.islarge? css`transform: translate3d(0,-2px,0)` : ''};
+        ${props => !props.islarge ? css`transform: translate3d(0,-2px,0)` : ''};
     }
 `
 
@@ -39,7 +39,7 @@ export const Description = styled.div`
     margin-left: -33px;
     margin-top: 1rem;
     overflow-y: auto;
-    ${prop => prop.isdescexp? prop.isdescexp && css`
+    ${prop => prop.isdescexp ? prop.isdescexp && css`
         height: auto;
         padding: 10px 0;
     ` : null}
@@ -54,7 +54,7 @@ export const RowContainer = styled.div`
 export const ExpadDescription = styled.div`
     display: flex;
     justify-content: center;
-    color: ${props =>props.theme.gray_600};
+    color: ${props => props.theme.gray_600};
     cursor: pointer;
 `
 export const Mask = styled.div`

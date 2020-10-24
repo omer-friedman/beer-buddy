@@ -8,14 +8,14 @@ const SearchProp = (props) => {
     const { searchKey, searchVal } = props
     const dispatch = useDispatch();
 
-    const visualPropKey = (srchKey) =>{
+    const visualPropKey = (srchKey) => {
         let visualKey = '';
-        switch(srchKey){
-            case 'food':      visualKey = 'food pairing - '; break;
-            case 'beer_name': visualKey = 'beer name - ';    break;
-            case 'abv_gt':    visualKey = '% >';             break;
-            case 'ibu_gt':    visualKey = 'IBU >';           break;
-            case 'ebc_gt':    visualKey = 'EBC >';           break;
+        switch (srchKey) {
+            case 'food': visualKey = 'food pairing - '; break;
+            case 'beer_name': visualKey = 'beer name - '; break;
+            case 'abv_gt': visualKey = '% >'; break;
+            case 'ibu_gt': visualKey = 'IBU >'; break;
+            case 'ebc_gt': visualKey = 'EBC >'; break;
             default: return '';
         }
         return visualKey;

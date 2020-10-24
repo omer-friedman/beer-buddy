@@ -1,8 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import {ThemeProvider} from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import Theme from './components/styled/Theme';
-import{
+import {
   BrowserRouter as Router,
   Switch,
   Route
@@ -21,7 +21,7 @@ function App() {
         <Header />
         <Body>
           <Router >
-            <Navigation /> 
+            <Navigation />
             <Switch>
               <Route exact path="/">
                 <BrowseBeers />

@@ -16,40 +16,40 @@ const SearchBar = (props) => {
     const filters = useSelector(state => state.searchReducer.filters)
     const inpRef = React.createRef()
 
-    useEffect(()=>{
-        if(expanded)
+    useEffect(() => {
+        if (expanded)
             inpRef.current.focus();
     }, [expanded, inpRef])
 
-    const searchClickHandler = () =>{
+    const searchClickHandler = () => {
         const val_to_search = inpRef.current.value;
-        if(expanded && val_to_search){
+        if (expanded && val_to_search) {
             dispatch(searchAdded(selectedKey, val_to_search))
         }
     }
 
-    const searchSelectedHandler = (value) =>{
+    const searchSelectedHandler = (value) => {
         inpRef.current.focus();
         setKey(value)
     }
 
-    const handleKeyPress = (e) =>{
-        if(e.key === 'Enter')
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter')
             searchClickHandler.call()
     }
 
-    return ( 
-        <SearchBarSC>  
-            {expanded && <SearchSelect handleChange={searchSelectedHandler}/>}
+    return (
+        <SearchBarSC>
+            {expanded && <SearchSelect handleChange={searchSelectedHandler} />}
             {expanded && <SearchInput ref={inpRef} onKeyPress={(e) => handleKeyPress(e)} />}
-            <StyledIconSearch icon={faSearch} onClick={searchClickHandler}/>
-            <FontAwesomeIcon icon={expanded? faAngleLeft: faAngleRight} onClick={() => dispatch(searchExpandToggled(!expanded))}/>
+            <StyledIconSearch icon={faSearch} onClick={searchClickHandler} />
+            <FontAwesomeIcon icon={expanded ? faAngleLeft : faAngleRight} onClick={() => dispatch(searchExpandToggled(!expanded))} />
             {
                 filters &&
-                Object.entries(filters).map(([key,val]) => {
+                Object.entries(filters).map(([key, val]) => {
                     return <SearchProp key={key} searchKey={key} searchVal={val} />
                 })
-            } 
+            }
         </SearchBarSC>
     );
 };

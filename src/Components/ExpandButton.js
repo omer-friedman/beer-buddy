@@ -4,7 +4,7 @@ import Icon from './styled/Icon'
 
 const ExpandButton = (props) => {
     return (
-            <Icon icon={faExpand} onClick={props.expandBtnClicked}/>
+        <Icon icon={faExpand} onClick={props.expandBtnClicked} />
     );
 }
 

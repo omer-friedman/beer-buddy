@@ -7,7 +7,7 @@ const BeersItems = (props) => {
     return (
         products.map(product =>
             <div key={product.id}>
-                <BeerCard product={product}/>
+                <BeerCard product={product} />
             </div>
         )
     );

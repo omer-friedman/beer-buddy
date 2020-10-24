@@ -1,7 +1,7 @@
 import * as actions from "../actions/actionTypes";
 
 export const searchReducer = (state = {}, action) => {
-    switch(action.type){
+    switch (action.type) {
 
         case actions.SEARCH_EXPAND_TOGGLED:
             return {
@@ -10,23 +10,23 @@ export const searchReducer = (state = {}, action) => {
             };
 
         case actions.SEARCH_FILTER_ADDED:
-            return{
+            return {
                 ...state,
                 filters: {
                     ...state.filters,
                     [action.payload.filterKey]: action.payload.filterVal
                 }
             }
-        
-            case actions.SEARCH_FILTER_REMOVED:
-                let {[action.payload.filterKey] : omit, ...res} = state.filters;
-                return{
-                    ...state,
-                    filters: res
-                }
-            
-            case actions.SEARCH_ALL_FILTERS_REMOVED:
-            return{
+
+        case actions.SEARCH_FILTER_REMOVED:
+            let { [action.payload.filterKey]: omit, ...res } = state.filters;
+            return {
+                ...state,
+                filters: res
+            }
+
+        case actions.SEARCH_ALL_FILTERS_REMOVED:
+            return {
                 ...state,
                 filters: {}
             }

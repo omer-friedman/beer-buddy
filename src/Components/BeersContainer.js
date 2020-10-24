@@ -9,10 +9,10 @@ const BeersContainer = (props) => {
     return (
         <BeersContainerSC>
             {
-                products.length > 0?
-                <BeersItems products={products}/>
-                :
-                <NoResults message={"no results"}/>
+                products.length > 0 ?
+                    <BeersItems products={products} />
+                    :
+                    <NoResults message={"no results"} />
             }
         </BeersContainerSC>
     );

@@ -6,14 +6,14 @@ module.exports = {
   purge: [],
   theme: {
     extend: {
-      backgroundColor:{
+      backgroundColor: {
         'black-t-50': 'rgba(0,0,0,0.5)',
         'black-t-30': 'rgba(0,0,0,0.3)'
       },
-      cursor:{
+      cursor: {
         'context-menu': 'context-menu'
       },
-      opacity:{
+      opacity: {
         '10': '0.10'
       }
     },

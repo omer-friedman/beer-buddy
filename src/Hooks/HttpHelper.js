@@ -1,8 +1,8 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export const useAxiosGet = (url) =>{
-    console.log("URL: "+url)
+export const useAxiosGet = (url) => {
+    console.log("URL: " + url)
     const [request, setRequest] = useState({
         loading: false,
         data: null,

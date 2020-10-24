@@ -30,5 +30,5 @@ export const Rank = styled.div`
 `
 
 export const StarIcon = styled(FontAwesomeIcon)`
-    color: ${props => props.rank > 0? props.theme.yellow_400 : ''}
+    color: ${props => props.rank > 0 ? props.theme.yellow_400 : ''}
 `

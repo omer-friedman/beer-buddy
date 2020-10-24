@@ -1,6 +1,6 @@
 import * as actions from './actionTypes'
 
-export const favoriteAdded = (id) =>{
+export const favoriteAdded = (id) => {
     return {
         type: actions.FAVORITE_ADDED,
         payload: {
@@ -9,19 +9,19 @@ export const favoriteAdded = (id) =>{
     }
 }
 
-export const favoriteRemoved = (id) =>{
-    return{
+export const favoriteRemoved = (id) => {
+    return {
         type: actions.FAVORITE_REMOVED,
-        payload:{
+        payload: {
             id
         }
     }
 }
 
-export const rankChanged = (id, rank) =>{
-    return{
+export const rankChanged = (id, rank) => {
+    return {
         type: actions.RANK_CHANGED,
-        payload:{
+        payload: {
             id,
             rank
         }

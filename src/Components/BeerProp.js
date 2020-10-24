@@ -1,7 +1,7 @@
 import React from 'react';
 import BeerPropSC from './styled/BeerPropSC'
 
-const  BeerProp = (props) => {
+const BeerProp = (props) => {
 
     return (
         <BeerPropSC data-tooltip={props.description}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { MenuHeader, LinkSC, ListItem } from './styled/NavMenuSC';
 
-const NavMenu = (props) =>{
+const NavMenu = (props) => {
     return (
         <>
             <MenuHeader>BeerBuddy</MenuHeader>
