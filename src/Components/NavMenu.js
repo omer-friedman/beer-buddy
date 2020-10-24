@@ -1,7 +1,7 @@
-import React from 'react'
-import { MenuHeader, LinkSC, ListItem } from './Styled/NavMenuSC'
+import React from 'react';
+import { MenuHeader, LinkSC, ListItem } from './styled/NavMenuSC';
 
-function NavMenu(props){
+const NavMenu = (props) => {
     return (
         <>
             <MenuHeader>BeerBuddy</MenuHeader>
@@ -19,6 +19,6 @@ function NavMenu(props){
             </ul>
         </>
     )
-}
+};
 
 export default NavMenu

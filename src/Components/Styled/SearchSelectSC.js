@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const SearchSelectSC = styled.select`
-    /* "uppercase mr-5"  */
     text-transform: uppercase;
     font-family: 'Dosis', sans-serif;
     font-size: 1rem;

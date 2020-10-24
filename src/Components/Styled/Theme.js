@@ -1,4 +1,4 @@
-const Theme ={
+const Theme = {
     gray_600: '#718096',
     blue_500: '#4299e1',
     favorite_color: '#FA3550',

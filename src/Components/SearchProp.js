@@ -1,28 +1,22 @@
 import React from 'react';
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { PropBar, RemoveProp } from './Styled/SearchPropSC'
+import { useDispatch } from 'react-redux';
+import { searchRemoved } from '../actions/searchActions';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { PropBar, RemoveProp } from './styled/SearchPropSC';
 
-function SearchProp(props) {
-    const [searchKey, searchVal] = [props.searchKey, props.searchVal]
-    const [itemsSelected, setItemsSelected, removeItem] = [props.itemsSelected, props.setItemsSelected, props.removeItem]
-    let visualKey = ''
+const SearchProp = (props) => {
+    const { searchKey, searchVal } = props
+    const dispatch = useDispatch();
 
-    const searchItems = {
-        'food pairing': 'food',
-        'beer name': 'beer_name',
-        'minimum abv' : 'abv_gt',
-        'minimum ibu' : 'ibu_gt',
-        'minimum ebc' : 'ebc_gt'
-    }
-
-    const visualPropKey = (srchKey) =>{
+    const visualPropKey = (srchKey) => {
         let visualKey = '';
-        switch(srchKey){
-            case 'food':      visualKey = 'food pairing - '; break;
-            case 'beer_name': visualKey = 'beer name - ';    break;
-            case 'abv_gt':    visualKey = '% >';             break;
-            case 'ibu_gt':    visualKey = 'IBU >';           break;
-            case 'ebc_gt':    visualKey = 'EBC >';           break;
+        switch (srchKey) {
+            case 'food': visualKey = 'food pairing - '; break;
+            case 'beer_name': visualKey = 'beer name - '; break;
+            case 'abv_gt': visualKey = '% >'; break;
+            case 'ibu_gt': visualKey = 'IBU >'; break;
+            case 'ebc_gt': visualKey = 'EBC >'; break;
+            default: return '';
         }
         return visualKey;
     }
@@ -30,14 +24,9 @@ function SearchProp(props) {
     return (
         <PropBar>
             <span>{visualPropKey(searchKey)} {searchVal}</span>
-            <RemoveProp icon={faTimes} onClick={()=>{
-                removeItem.call()
-                delete itemsSelected[searchKey]
-                setItemsSelected(Object.assign({}, itemsSelected))
-                }}
-            />
+            <RemoveProp icon={faTimes} onClick={() => dispatch(searchRemoved(searchKey))} />
         </PropBar>
     );
-}
+};
 
 export default SearchProp;

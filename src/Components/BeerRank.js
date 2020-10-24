@@ -1,24 +1,31 @@
 import React from 'react';
-import { faStar } from '@fortawesome/free-solid-svg-icons'
-import Icon from './Styled/Icon'
-import { Rank } from './Styled/BeerRankSC'
+import { useDispatch, useSelector } from 'react-redux';
+import { rankChanged } from '../actions/favoritesActions';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { Rank } from './styled/BeerRankSC';
+import Icon from './styled/Icon';
+import RankIcon from './styled/RankIcon';
 
-function BeerRank(props) {
-    const rankValues = [1,2,3,4,5];
+const BeerRank = (props) => {
+    const rankValues = [1, 2, 3, 4, 5];
+    const rank = useSelector(state => props.id in state.favoritesReducer.favorites ? state.favoritesReducer.favorites[props.id].rank : '')
+    const dispatch = useDispatch();
 
-    const handleChage = (e) =>{
-        props.handleRankChanged(e.target.value)
+    const handleChange = (e) => {
+        dispatch(rankChanged(props.id, e.target.value))
     }
 
     return (
         <>
             <Rank>
-                <select value={props.rank} onChange={handleChage}>
+                <select value={rank} onChange={handleChange}>
                     <option value=''></option>
-                    {rankValues.map((key,val) => <option key={val} value={key}>{key}</option>)}
+                    {rankValues.map((key, val) => <option key={val} value={key}>{key}</option>)}
                 </select>
             </Rank>
-            <Icon icon={faStar} isranked={props.rank > 0}/>
+            <RankIcon>
+                <Icon icon={faStar} isranked={rank > 0 ? 1 : 0} />
+            </RankIcon>
         </>
     );
 }

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const StyledIconSearch = styled(FontAwesomeIcon)`
     margin-right: 1rem;
-    opacity: ${props => props.showSearch? 0.25 : 1};
+    opacity: ${props => props.showSearch ? 0.25 : 1};
 `
 
 export default StyledIconSearch

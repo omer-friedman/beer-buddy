@@ -1,55 +1,57 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons'
-import SearchSelect from './SearchSelect'
-import SearchProp from './SearchProp'
-import StyledIconSearch from './Styled/StyledIconSearch'
-import SearchBarSC from './Styled/SearchBarSC'
-import SearchInput from './Styled/SearchInput'
+import SearchSelect from './SearchSelect';
+import SearchProp from './SearchProp';
+import StyledIconSearch from './styled/StyledIconSearch';
+import SearchBarSC from './styled/SearchBarSC';
+import SearchInput from './styled/SearchInput';
+import { searchExpandToggled, searchAdded } from '../actions/searchActions';
 
-
-function SearchBar(props) {
-    const [showSearch, setShowSearch] = [props.showSearch, props.setShowSearch]
-    const [itemsSelected, setItemsSelected] = [props.itemsSelected, props.setItemsSelected]
+const SearchBar = (props) => {
     const [selectedKey, setKey] = useState('food')
-    const [itemRemoved, setItemRemoved] = useState(false)
-    const inpRef = React.createRef();
+    const expanded = useSelector(state => state.searchReducer.expanded)
+    const dispatch = useDispatch()
+    const filters = useSelector(state => state.searchReducer.filters)
+    const inpRef = React.createRef()
 
-    useEffect(()=>{
-        inpRef.current.focus();
-    }, [showSearch])
+    useEffect(() => {
+        if (expanded)
+            inpRef.current.focus();
+    }, [expanded, inpRef])
 
-    const searchClickHandler = () =>{
-        let val_to_search = inpRef.current.value;
-        if(showSearch && val_to_search){
-            setItemsSelected({...itemsSelected, [selectedKey]: val_to_search})
-            props.onSearch.call()
+    const searchClickHandler = () => {
+        const val_to_search = inpRef.current.value;
+        if (expanded && val_to_search) {
+            dispatch(searchAdded(selectedKey, val_to_search))
         }
     }
 
-    const searchSelectedHandler = (value) =>{
+    const searchSelectedHandler = (value) => {
         inpRef.current.focus();
         setKey(value)
     }
 
-    const handleKeyPress = (e) =>{
-        if(e.key === 'Enter')
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter')
             searchClickHandler.call()
     }
 
-    return ( 
-        <SearchBarSC>  
-            {showSearch && <SearchSelect handleChange={searchSelectedHandler}/>}
-            <SearchInput ref={inpRef} showsearch={showSearch} onKeyPress={(e) => handleKeyPress(e)} />
-            <StyledIconSearch icon={faSearch} onClick={searchClickHandler}/>
-            <FontAwesomeIcon icon={showSearch? faAngleLeft: faAngleRight} onClick={() => setShowSearch(!showSearch)}/>
+    return (
+        <SearchBarSC>
+            {expanded && <SearchSelect handleChange={searchSelectedHandler} />}
+            {expanded && <SearchInput ref={inpRef} onKeyPress={(e) => handleKeyPress(e)} />}
+            <StyledIconSearch icon={faSearch} onClick={searchClickHandler} />
+            <FontAwesomeIcon icon={expanded ? faAngleLeft : faAngleRight} onClick={() => dispatch(searchExpandToggled(!expanded))} />
             {
-                Object.entries(itemsSelected).map(([key,val]) => {
-                    return <SearchProp key={key} searchKey={key} searchVal={val} setItemsSelected={setItemsSelected} itemsSelected={itemsSelected} removeItem={() => setItemRemoved(!itemRemoved)}/>
+                filters &&
+                Object.entries(filters).map(([key, val]) => {
+                    return <SearchProp key={key} searchKey={key} searchVal={val} />
                 })
-            } 
+            }
         </SearchBarSC>
     );
-}
+};
 
 export default SearchBar;

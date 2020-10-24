@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
-import {useTransition, animated} from 'react-spring'
-import NavMenu from './NavMenu'
-import { Mask } from './Styled/BeerCardSC'
-import { BarsIcon, Menu } from './Styled/NavigationSC'
-  
+import React, { useState } from 'react';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { useTransition, animated } from 'react-spring';
+import NavMenu from './NavMenu';
+import { Mask } from './styled/BeerCardSC';
+import { BarsIcon, Menu } from './styled/NavigationSC';
 
-function Navigation(){
+
+const Navigation = () => {
     const [showMenu, setShowMenu] = useState(false)
 
     const maskTransitions = useTransition(showMenu, null, {
@@ -23,24 +23,24 @@ function Navigation(){
 
     return (
         <nav>
-            <BarsIcon icon={faBars} onClick={() => setShowMenu(!showMenu)}/>
+            <BarsIcon icon={faBars} onClick={() => setShowMenu(!showMenu)} />
             { //Mask
                 maskTransitions.map(({ item, key, props }) =>
-                    item && 
-                    <Mask as={animated.div} key={key} style={props}onClick={() => setShowMenu(false)} />
+                    item &&
+                    <Mask as={animated.div} key={key} style={props} onClick={() => setShowMenu(false)} />
                 )
             }
 
             { //Menu
                 menuTransitions.map(({ item, key, props }) =>
-                    item && 
+                    item &&
                     <Menu as={animated.div} key={key} style={props} >
-                        <NavMenu closeMenu={() => setShowMenu(false)}/>
+                        <NavMenu closeMenu={() => setShowMenu(false)} />
                     </Menu>
                 )
             }
         </nav>
     )
-}
+};
 
 export default Navigation

@@ -1,17 +1,17 @@
 import React from 'react';
-import SearchSelectSC from './Styled/SearchSelectSC'
+import SearchSelectSC from './styled/SearchSelectSC';
 
-function SearchSelect(props) {
-    
+const SearchSelect = (props) => {
+
     const searchItems = {
         'food pairing': 'food',
         'beer name': 'beer_name',
-        'minimum abv' : 'abv_gt',
-        'minimum ibu' : 'ibu_gt',
-        'minimum ebc' : 'ebc_gt'
+        'minimum abv': 'abv_gt',
+        'minimum ibu': 'ibu_gt',
+        'minimum ebc': 'ebc_gt'
     }
 
-    const handleChange = (e) =>{
+    const handleChange = (e) => {
         props.handleChange(e.target.value)
     }
 
@@ -19,13 +19,13 @@ function SearchSelect(props) {
         <>
             <SearchSelectSC onChange={handleChange}>
                 {
-                   Object.entries(searchItems).map(([key,val]) => {
+                    Object.entries(searchItems).map(([key, val]) => {
                         return <option value={val} key={key}>{key}</option>
                     })
                 }
             </SearchSelectSC>
         </>
     )
-}
+};
 
 export default SearchSelect;
