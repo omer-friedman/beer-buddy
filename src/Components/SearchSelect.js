@@ -1,7 +1,7 @@
 import React from 'react';
-import SearchSelectSC from './Styled/SearchSelectSC'
+import SearchSelectSC from './styled/SearchSelectSC';
 
-function SearchSelect(props) {
+const SearchSelect = (props) => {
     
     const searchItems = {
         'food pairing': 'food',
@@ -26,6 +26,6 @@ function SearchSelect(props) {
             </SearchSelectSC>
         </>
     )
-}
+};
 
 export default SearchSelect;

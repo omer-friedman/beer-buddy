@@ -1,50 +1,39 @@
-import React, { useState } from 'react';
-import {ThemeProvider} from 'styled-components'
-import Theme from './Components/Styled/Theme'
+import React from 'react';
+import { Provider } from 'react-redux';
+import {ThemeProvider} from 'styled-components';
+import Theme from './components/styled/Theme';
 import{
   BrowserRouter as Router,
   Switch,
   Route
-} from 'react-router-dom'
-import Header from './Components/Header'
-import Navigation from './Components/Navigation'
-import Favorites from './Views/Favorites'
-import BrowseBeers from './Views/BrowseBeers'
-import Body from './Components/Styled/Body'
-
+} from 'react-router-dom';
+import Header from './components/Header';
+import Navigation from './components/Navigation';
+import Favorites from './views/Favorites';
+import BrowseBeers from './views/BrowseBeers';
+import Body from './components/styled/Body';
+import store from './store/store';
 
 function App() {
-  const [favorites, setFavorites] = useState({})
-  const [goToBaseUrl, setGoToBaseUrl] = useState(false)
-
-  const toggleFavorite = (product) =>{
-    if(product.isFavorite)
-      setFavorites({...favorites,[product.id]: product})
-    else if(product.id in favorites){
-      delete favorites[product.id]
-      setFavorites(Object.assign({}, favorites))
-    }
-  }
-  
   return (
-    <>
-    <ThemeProvider theme={Theme}>
-      <Header />
-      <Body>
-        <Router >
-          <Navigation /> 
-          <Switch>
-            <Route exact path="/">
-              <BrowseBeers favorites={favorites} toggleFavorite={toggleFavorite} gotToBaseUrl={goToBaseUrl}/>
-            </Route>
-            <Route path="/favorites">
-              <Favorites favorites={favorites} toggleFavorite={toggleFavorite} goToBaseUrl={() => setGoToBaseUrl(true)}/>
-            </Route>
-          </Switch>
-        </Router>
-      </Body>
-    </ThemeProvider>
-    </>
+    <Provider store={store}>
+      <ThemeProvider theme={Theme}>
+        <Header />
+        <Body>
+          <Router >
+            <Navigation /> 
+            <Switch>
+              <Route exact path="/">
+                <BrowseBeers />
+              </Route>
+              <Route path="/favorites">
+                <Favorites />
+              </Route>
+            </Switch>
+          </Router>
+        </Body>
+      </ThemeProvider>
+    </ Provider>
   );
 }
 

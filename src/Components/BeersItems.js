@@ -1,20 +1,13 @@
 import React from 'react';
 import BeerCard from './BeerCard'
 
-
-function BeersItems(props) {
-    const products = props.products;
-    const favorites = props.favorites;
+const BeersItems = (props) => {
+    const { products } = props;
 
     return (
         products.map(product =>
             <div key={product.id}>
-                <BeerCard product={
-                    (product.id in favorites)? 
-                    favorites[product.id] : 
-                    product
-                }
-                isFavorite={product.id in favorites} toggleFavorite={props.toggleFavorite}/>
+                <BeerCard product={product}/>
             </div>
         )
     );

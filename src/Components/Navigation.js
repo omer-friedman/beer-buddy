@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
-import {useTransition, animated} from 'react-spring'
-import NavMenu from './NavMenu'
-import { Mask } from './Styled/BeerCardSC'
-import { BarsIcon, Menu } from './Styled/NavigationSC'
+import React, { useState } from 'react';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import {useTransition, animated} from 'react-spring';
+import NavMenu from './NavMenu';
+import { Mask } from './styled/BeerCardSC';
+import { BarsIcon, Menu } from './styled/NavigationSC';
   
 
-function Navigation(){
+const Navigation = () =>{
     const [showMenu, setShowMenu] = useState(false)
 
     const maskTransitions = useTransition(showMenu, null, {
@@ -41,6 +41,6 @@ function Navigation(){
             }
         </nav>
     )
-}
+};
 
 export default Navigation

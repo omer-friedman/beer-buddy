@@ -12,12 +12,12 @@ export const Rank = styled.div`
         background: transparent;
         color: black;
         font-weight: bold;
-        margin-right: -39px;
+        margin-right: -36px;
         margin-top: 9px;
         outline: none;
         border: none;
         z-index: 50;
-        padding: 10px;
+        padding: 7px;
         -webkit-appearance: none;
         -moz-appearance: none;
         text-indent: 1px;
@@ -25,7 +25,6 @@ export const Rank = styled.div`
         
         option{
             color: black;
-            padding: 15px;
         }
     }
 `

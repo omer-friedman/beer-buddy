@@ -9,7 +9,6 @@
         margin-right: 0.75rem;
         outline: solid 1px gray;
         font-family: 'Dosis', sans-serif;
-        display: ${props => props.showsearch? '' : 'none'};
     `
 
     export default SearchInput

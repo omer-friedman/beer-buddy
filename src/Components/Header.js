@@ -1,11 +1,11 @@
 import React from 'react';
-import logo from '../Media/logo1.png'
-import HeaderSC from './Styled/HeaderSC'
+import logo from '../media/logo.png';
+import HeaderSC from './styled/HeaderSC';
 
-function Header(props) {
+const Header = () => {
     return (
         <HeaderSC>
-          <img className="logoImg" src={logo} alt="logo"/>
+          <img src={logo} alt="logo"/>
         </HeaderSC>
     );
 }

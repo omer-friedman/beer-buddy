@@ -1,10 +1,10 @@
-import React from 'react'
-import LoaderSC from './Styled/LoaderSC'
-import Spinner from './Styled/Spinner'
-import { Mask } from './Styled/BeerCardSC'
+import React from 'react';
+import LoaderSC from './styled/LoaderSC';
+import Spinner from './styled/Spinner';
+import { Mask } from './styled/BeerCardSC';
 
 
-function Loader(){
+const Loader = () =>{
     return (
         <Mask>
             <LoaderSC>
@@ -12,6 +12,6 @@ function Loader(){
             </LoaderSC>
         </Mask>
     )
-}
+};
 
 export default Loader

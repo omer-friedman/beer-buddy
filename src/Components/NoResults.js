@@ -1,13 +1,20 @@
-import React from 'react'
-import spilled_bear from '../Media/spilled_bear.png'
-import { Container, NoResultsBox, ErrorMsg, HomeLink, Span, SpilledImg } from './Styled/NoResultsSC'
+import React from 'react';
+import spilled_bear from '../media/spilled_bear.png';
+import { Container, NoResultsBox, ErrorMsg, HomeLink, Span, SpilledImg } from './styled/NoResultsSC';
+import { useDispatch } from 'react-redux';
+import { removeAllProps } from '../actions/searchActions';
 
-function NoResults(props) {
+const NoResults = (props) => {
+    const dispatch = useDispatch();
+
+    const removeProps = () =>{
+        dispatch(removeAllProps());
+    }
 
     return (
         <Container>
             <SpilledImg alt="not-found" src={spilled_bear}/>
-            <HomeLink to="/" onClick={props.noResults}>
+            <HomeLink to="/" onClick={removeProps}>
                 <NoResultsBox>
                         <ErrorMsg>{props.message}</ErrorMsg>
                         <Span>Click To Browse</Span>
@@ -16,6 +23,6 @@ function NoResults(props) {
             </HomeLink>
         </Container>
     );
-}
+};
 
 export default NoResults;
